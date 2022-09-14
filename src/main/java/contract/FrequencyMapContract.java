@@ -1,7 +1,7 @@
 package contract;
 
 public interface FrequencyMapContract {
-    void createFrequencyHashMap();
+    void createFrequencyTreeMap();
 
     void createFrequencyMatrix();
 }

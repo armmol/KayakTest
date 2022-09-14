@@ -4,7 +4,7 @@ import contract.FrequencyMapContract;
 import java.util.*;
 
 public class FrequencyMap implements FrequencyMapContract {
-    private final TreeMap<Double, Integer> frequencyHashMap;
+    private final TreeMap<Double, Integer> frequencyTreeMap;
     private final ArrayList<Double> userInput;
     private String[][] frequencyMatrix;
     private final double maximum;
@@ -12,37 +12,37 @@ public class FrequencyMap implements FrequencyMapContract {
 
     public FrequencyMap(ArrayList<Double> userInput) {
         this.userInput = userInput;
-        frequencyHashMap = new TreeMap<>();
+        frequencyTreeMap = new TreeMap<>();
         maximum = userInput.get(userInput.size() - 1);
         minimum = userInput.get(0);
-        createFrequencyHashMap();
+        createFrequencyTreeMap();
         createFrequencyMatrix();
     }
 
     @Override
-    public void createFrequencyHashMap() {
+    public void createFrequencyTreeMap() {
         for (Double i = minimum; i <= maximum; i++) {
-            if (!frequencyHashMap.containsKey(i)) {
-                frequencyHashMap.put(i, 0);
+            if (!frequencyTreeMap.containsKey(i)) {
+                frequencyTreeMap.put(i, 0);
             }
         }
         for (Double number : userInput) {
-            frequencyHashMap.put(number, frequencyHashMap.get(number) + 1);
+            frequencyTreeMap.put(number, frequencyTreeMap.get(number) + 1);
         }
     }
 
     @Override
     public void createFrequencyMatrix() {
-        frequencyMatrix = new String[frequencyHashMap.size()][getHighestFrequency() + 1];
+        frequencyMatrix = new String[frequencyTreeMap.size()][getHighestFrequency() + 1];
         int i = 0;
-        for (Map.Entry<Double, Integer> currentMapElement : frequencyHashMap.entrySet()) {
+        for (Map.Entry<Double, Integer> currentMapElement : frequencyTreeMap.entrySet()) {
             for (int j = 0; j < frequencyMatrix[0].length; j++) {
                 if (j == 0) {
                     frequencyMatrix[i][j] = "" + currentMapElement.getKey();
                 } else {
                     if (currentMapElement.getValue() > 0) {
                         frequencyMatrix[i][j] = "*";
-                        frequencyHashMap.put(currentMapElement.getKey(), currentMapElement.getValue() - 1);
+                        frequencyTreeMap.put(currentMapElement.getKey(), currentMapElement.getValue() - 1);
                     } else {
                         frequencyMatrix[i][j] = " ";
                     }
@@ -54,7 +54,7 @@ public class FrequencyMap implements FrequencyMapContract {
 
     public int getHighestFrequency() {
         int maxIterations = 0;
-        for (Map.Entry<Double, Integer> currentMapElement : frequencyHashMap.entrySet()) {
+        for (Map.Entry<Double, Integer> currentMapElement : frequencyTreeMap.entrySet()) {
             if (currentMapElement.getValue() > maxIterations) {
                 maxIterations = currentMapElement.getValue();
             }
@@ -62,8 +62,8 @@ public class FrequencyMap implements FrequencyMapContract {
         return maxIterations;
     }
 
-    public TreeMap<Double, Integer> getFrequencyHashMap() {
-        return frequencyHashMap;
+    public TreeMap<Double, Integer> getFrequencyTreeMap() {
+        return frequencyTreeMap;
     }
 
     public ArrayList<Double> getUserInput() {
@@ -85,7 +85,7 @@ public class FrequencyMap implements FrequencyMapContract {
     @Override
     public String toString() {
         return "FrequencyMap{" +
-                "frequencyHashMap=" + frequencyHashMap +
+                "frequencyHashMap=" + frequencyTreeMap +
                 ", userInput=" + userInput +
                 ", frequencyMatrix=" + Arrays.toString(frequencyMatrix) +
                 ", maximum=" + maximum +
