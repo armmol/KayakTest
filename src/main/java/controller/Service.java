@@ -69,8 +69,10 @@ public class Service implements ServiceContract {
 
     @Override
     public void printSolution() {
+        System.out.printf("The following displays a list for the solution to the problem.\n"+
+                "%1$-10s %2$-10s\n","Value","Frequency");
         for(Map.Entry<Double,Integer> mapElement : frequencyMap.getFrequencyTreeMap().entrySet()){
-            System.out.println();
+            System.out.printf("%1$-10s %2$-10s\n", mapElement.getKey(),mapElement.getValue());
         }
         for (int i = frequencyMap.getFrequencyMatrix()[0].length - 1; i >= 0; i--) {
             for (int j = 0; j < frequencyMap.getFrequencyMatrix().length; j++) {

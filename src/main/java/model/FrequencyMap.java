@@ -1,4 +1,5 @@
 package model;
+
 import contract.FrequencyMapContract;
 
 import java.util.*;
@@ -35,14 +36,15 @@ public class FrequencyMap implements FrequencyMapContract {
     public void createFrequencyMatrix() {
         frequencyMatrix = new String[frequencyTreeMap.size()][getHighestFrequency() + 1];
         int i = 0;
-        for (Map.Entry<Double, Integer> currentMapElement : frequencyTreeMap.entrySet()) {
+        TreeMap<Double, Integer> frequencyTreeMapCopy = new TreeMap<>(frequencyTreeMap);
+        for (Map.Entry<Double, Integer> currentMapElement : frequencyTreeMapCopy.entrySet()) {
             for (int j = 0; j < frequencyMatrix[0].length; j++) {
                 if (j == 0) {
                     frequencyMatrix[i][j] = "" + currentMapElement.getKey();
                 } else {
                     if (currentMapElement.getValue() > 0) {
                         frequencyMatrix[i][j] = "*";
-                        frequencyTreeMap.put(currentMapElement.getKey(), currentMapElement.getValue() - 1);
+                        frequencyTreeMapCopy.put(currentMapElement.getKey(), currentMapElement.getValue() - 1);
                     } else {
                         frequencyMatrix[i][j] = " ";
                     }
