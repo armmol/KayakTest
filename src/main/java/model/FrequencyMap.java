@@ -8,21 +8,17 @@ public class FrequencyMap implements FrequencyMapContract {
     private final TreeMap<Double, Integer> frequencyTreeMap;
     private final ArrayList<Double> userInput;
     private String[][] frequencyMatrix;
-    private final double maximum;
-    private final double minimum;
 
     public FrequencyMap(ArrayList<Double> userInput) {
         this.userInput = userInput;
         frequencyTreeMap = new TreeMap<>();
-        maximum = userInput.get(userInput.size() - 1);
-        minimum = userInput.get(0);
-        createFrequencyTreeMap();
+        createFrequencyTreeMap(userInput);
         createFrequencyMatrix();
     }
 
     @Override
-    public void createFrequencyTreeMap() {
-        for (Double i = minimum; i <= maximum; i++) {
+    public void createFrequencyTreeMap(ArrayList<Double> userInput) {
+        for (Double i = userInput.get(0); i <= userInput.get(userInput.size() - 1); i++) {
             if (!frequencyTreeMap.containsKey(i)) {
                 frequencyTreeMap.put(i, 0);
             }
@@ -55,13 +51,10 @@ public class FrequencyMap implements FrequencyMapContract {
     }
 
     public int getHighestFrequency() {
-        int maxIterations = 0;
-        for (Map.Entry<Double, Integer> currentMapElement : frequencyTreeMap.entrySet()) {
-            if (currentMapElement.getValue() > maxIterations) {
-                maxIterations = currentMapElement.getValue();
-            }
-        }
-        return maxIterations;
+        if (!frequencyTreeMap.values().isEmpty())
+            return frequencyTreeMap.values().stream().max(Double::compare).get();
+        else
+            return 0;
     }
 
     public TreeMap<Double, Integer> getFrequencyTreeMap() {
@@ -72,26 +65,7 @@ public class FrequencyMap implements FrequencyMapContract {
         return userInput;
     }
 
-    public Double getMaximum() {
-        return maximum;
-    }
-
-    public double getMinimum() {
-        return minimum;
-    }
-
     public String[][] getFrequencyMatrix() {
         return frequencyMatrix;
-    }
-
-    @Override
-    public String toString() {
-        return "FrequencyMap{" +
-                "frequencyHashMap=" + frequencyTreeMap +
-                ", userInput=" + userInput +
-                ", frequencyMatrix=" + Arrays.toString(frequencyMatrix) +
-                ", maximum=" + maximum +
-                ", minimum=" + minimum +
-                '}';
     }
 }

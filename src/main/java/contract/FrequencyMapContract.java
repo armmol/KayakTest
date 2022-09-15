@@ -1,7 +1,9 @@
 package contract;
 
+import java.util.ArrayList;
+
 public interface FrequencyMapContract {
-    void createFrequencyTreeMap();
+    void createFrequencyTreeMap(ArrayList<Double> userInput);
 
     void createFrequencyMatrix();
 }

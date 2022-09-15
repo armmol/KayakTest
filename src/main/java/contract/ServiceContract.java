@@ -3,7 +3,6 @@ package contract;
 import java.util.ArrayList;
 
 public interface ServiceContract {
-    void startService();
 
     void acceptInput();
 
@@ -14,4 +13,6 @@ public interface ServiceContract {
     void defineFrequencyMapObject();
 
     void printSolution();
+
+    void printSeparator();
 }
