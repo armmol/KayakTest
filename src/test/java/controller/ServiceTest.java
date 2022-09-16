@@ -44,7 +44,7 @@ class ServiceTest {
         ByteArrayInputStream in = new ByteArrayInputStream(VALID_INPUT.getBytes());
         System.setIn(in);
         assertEquals(service.acceptInput(in), VALID_INPUT_ARRAYLIST);
-        assertEquals(String.format("Enter Values separated by a single space."
+        assertEquals(String.format("Enter Values separated by a single space. Type \"Cancel\" at any point to stop process."
                         + "\n-------------------------------------------------\n"
                         + "You entered --> %s\n", VALID_INPUT).trim(),
                 outputStreamCaptor.toString().trim());

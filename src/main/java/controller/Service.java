@@ -20,6 +20,8 @@ public class Service implements ServiceContract {
     /**
      * Function to return the frequency Map Object
      * Required for testing
+     *
+     * @return FrequencyMap Object
      */
     public FrequencyMap getFrequencyMap() {
         return frequencyMap;
@@ -34,11 +36,11 @@ public class Service implements ServiceContract {
     @Override
     public ArrayList<String> acceptInput(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
-        System.out.print("Enter Values separated by a single space.");
+        System.out.print("Enter Values separated by a single space. Type \"Cancel\" at any point to stop process.");
         printSeparator();
-        String inputString = scanner.nextLine().trim();
+        String inputString = scanner.nextLine().trim().toLowerCase(Locale.ROOT);
         System.out.printf("You entered --> %s\n", inputString);
-        return (ArrayList<String>) Arrays.stream(inputString.trim().split(" "))
+        return (ArrayList<String>) Arrays.stream(inputString.split(" "))
                 .collect(Collectors.toList());
     }
 
@@ -47,6 +49,7 @@ public class Service implements ServiceContract {
      *
      * @param stringInput ArrayList<String> comprising values entered by the user.
      * @throws NumberFormatException when @param stringInput is non numeric.
+     * returns void
      */
     @Override
     public void validateInput(ArrayList<String> stringInput) throws NumberFormatException {
@@ -79,6 +82,7 @@ public class Service implements ServiceContract {
     /**
      * Function to initialise the FrequencyMap Object and call its function for creating the required
      * TreeMap and 2D Array of type<String> used for printing the number line.
+     * returns void
      */
     @Override
     public void defineFrequencyMapObject() {
@@ -91,6 +95,7 @@ public class Service implements ServiceContract {
     /**
      * Function to print the solution of the user input and print the number line
      * using the 2D Array FrequencyMatrix of the FrequencyMap class.
+     * returns void
      */
     @Override
     public void printSolution() {
@@ -113,6 +118,7 @@ public class Service implements ServiceContract {
 
     /**
      * Function to print a separator between different solution prints.
+     * returns void
      */
     @Override
     public void printSeparator() {

@@ -19,7 +19,8 @@ public class FrequencyMap implements FrequencyMapContract {
     }
 
     /**
-     * Function to create a TreeMap of the values entered in the list condition being that the list in not empty.
+     * Function to create a TreeMap, known as frequencyTreeMap belonging to the class,
+     * of the values entered in the list condition being that the list in not empty.
      *
      * @param userInput ArrayList of Type Double, includes values from user input.
      */
@@ -38,7 +39,9 @@ public class FrequencyMap implements FrequencyMapContract {
     }
 
     /**
-     * Function to create the 2D Array known as the frequencyMatrix which is later used to display the number line in the Service.java class.
+     * Function to create the 2D Array known as the frequencyMatrix belonging to the class
+     * which is later used to display the number line in the Service.java class.
+     * returns void
      */
     @Override
     public void createFrequencyMatrix() {
