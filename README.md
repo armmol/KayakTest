@@ -20,7 +20,7 @@ The program should be implemented in JAVA language.
 
 The program should accept list A as an argument either in command line or in UI.
 
-Numbers line should have all numbers from min(A) to max(A) even if it does not appear in A (e.g. 6) Numbers in the two lines should be aligned.
+Numbers line should have all numbers from min(A) to max(A) even if it does not appear in A (kayakJavaInternship.PNG) Numbers in the two lines should be aligned.
 
 Bonus points:
 
@@ -28,13 +28,13 @@ Instead of printing the number of appearances, draw a graph similar to the one b
 
 Prepare JUnit tests to ensure good code quality.
 
-Try keeping your code efficient and try to apply OOP (object oriented programming) principles:
+Try keeping your code efficient and try to apply OOP (Object-oriented programming) principles:
 
 ______________________________________________________________________________________________________________________________________________________________________
 
 The command line application solves the problem stated above by calculating frequencies of values in the list and displaying them on the number line using a 2D Array.
 
-CLone repository directly. It is a maven project. Preffered IDE - IntelliJ Idea. 
+CLone repository directly. It is a maven project. Preferred IDE - IntelliJ Idea. 
 Download Link - https://www.jetbrains.com/idea/
 
 Run the KayakMain.java class in the driver package to run the project.
