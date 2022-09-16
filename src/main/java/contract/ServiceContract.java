@@ -1,10 +1,15 @@
 package contract;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+
+/**
+ *Interface for the Service.java Controller Class defining functions in use.
+ */
 
 public interface ServiceContract {
 
-    void acceptInput();
+    ArrayList<String> acceptInput(InputStream inputStream);
 
     void validateInput(ArrayList<String> userInput);
 

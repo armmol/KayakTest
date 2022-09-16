@@ -4,30 +4,42 @@ import contract.FrequencyMapContract;
 
 import java.util.*;
 
+/**
+ * FrequencyMap Model class comprising a TreeMap and a 2D Array to process the input provided by the user.
+ */
 public class FrequencyMap implements FrequencyMapContract {
     private final TreeMap<Double, Integer> frequencyTreeMap;
-    private final ArrayList<Double> userInput;
     private String[][] frequencyMatrix;
 
-    public FrequencyMap(ArrayList<Double> userInput) {
-        this.userInput = userInput;
+    /**
+     * FrequencyMap Constructor
+     */
+    public FrequencyMap() {
         frequencyTreeMap = new TreeMap<>();
-        createFrequencyTreeMap(userInput);
-        createFrequencyMatrix();
     }
 
+    /**
+     * Function to create a TreeMap of the values entered in the list condition being that the list in not empty.
+     *
+     * @param userInput ArrayList of Type Double, includes values from user input.
+     */
     @Override
     public void createFrequencyTreeMap(ArrayList<Double> userInput) {
-        for (Double i = userInput.get(0); i <= userInput.get(userInput.size() - 1); i++) {
-            if (!frequencyTreeMap.containsKey(i)) {
-                frequencyTreeMap.put(i, 0);
+        if(!userInput.isEmpty()) {
+            for (Double i = userInput.get(0); i <= userInput.get(userInput.size() - 1); i++) {
+                if (!frequencyTreeMap.containsKey(i)) {
+                    frequencyTreeMap.put(i, 0);
+                }
             }
-        }
-        for (Double number : userInput) {
-            frequencyTreeMap.put(number, frequencyTreeMap.get(number) + 1);
+            for (Double number : userInput) {
+                frequencyTreeMap.put(number, frequencyTreeMap.get(number) + 1);
+            }
         }
     }
 
+    /**
+     * Function to create the 2D Array known as the frequencyMatrix which is later used to display the number line in the Service.java class.
+     */
     @Override
     public void createFrequencyMatrix() {
         frequencyMatrix = new String[frequencyTreeMap.size()][getHighestFrequency() + 1];
@@ -50,21 +62,37 @@ public class FrequencyMap implements FrequencyMapContract {
         }
     }
 
+    /**
+     * Function to return the highest frequecy of the number found in the list of numbers entered by the user.
+     *
+     * @return Integer value of number of times a number occurs in the list of numbers.
+     */
+    @Override
     public int getHighestFrequency() {
-        if (!frequencyTreeMap.values().isEmpty())
+        if (!frequencyTreeMap.values().isEmpty()) {
             return frequencyTreeMap.values().stream().max(Double::compare).get();
-        else
+        }
+        else {
             return 0;
+        }
     }
 
+    /**
+     * Function to return the TreeMap
+     *
+     * @return TreeMap Data structure of type <Double,Integer>
+     */
+    @Override
     public TreeMap<Double, Integer> getFrequencyTreeMap() {
         return frequencyTreeMap;
     }
 
-    public ArrayList<Double> getUserInput() {
-        return userInput;
-    }
-
+    /**
+     * Function to return 2D Array Frequency Matrix
+     *
+     * @return 2D Array of type <String>
+     */
+    @Override
     public String[][] getFrequencyMatrix() {
         return frequencyMatrix;
     }
